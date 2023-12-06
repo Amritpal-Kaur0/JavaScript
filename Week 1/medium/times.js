@@ -17,7 +17,7 @@ function calculateTime(n) {
     }
     const end=new Date().getTime();
 
-    const time =end-start/1000;
+    const time =(end-start)/1000;
     return time;
 }
 
