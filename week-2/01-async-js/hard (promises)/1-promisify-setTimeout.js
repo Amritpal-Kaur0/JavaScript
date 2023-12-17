@@ -5,16 +5,19 @@
 function wait(n) {
     return new Promise(resolve =>{
         setTimeout(()=>{
-          resolve()
-        },n)
+          resolve();
+        },n*1000)
     })
     }
-function wait(n) {
-    return new Promise(function(resolve){
-        setTimeout(()=>{
-          resolve()
-        },n)
-    })
-    }
-    
+
+    //syntax change
+// function wait(n) {
+//     return new Promise(function(resolve){
+//         setTimeout(()=>{
+//           resolve()
+//         },n)
+//     })
+//     }
+
+   module.exports = wait; 
 

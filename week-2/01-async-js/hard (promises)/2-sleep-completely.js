@@ -8,10 +8,11 @@ function sleep (seconds) {
     return new Promise((resolve) => {
         setTimeout(() => {
         resolve();
-        }, seconds * 1000);
+        }, seconds);
     });
 
 }
 sleep(2).then(() => {
     console.log('I am awake');
 });
+module.exports = sleep;
