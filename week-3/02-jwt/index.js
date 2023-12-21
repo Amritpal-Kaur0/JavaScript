@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 const jwtPassword = 'secret';
+const z=require("zod");
 
+
+   //Using Zod
+const EmailSchema= z.string().email();
+const PassSchema= z.string().min(6, { message: "Password must be at least 6 characters long" })
 
 /**
  * Generates a JWT for a given username and password.
@@ -14,12 +19,21 @@ const jwtPassword = 'secret';
  *                        the password does not meet the length requirement.
  */
 function signJwt(username, password) {
-    if(username.includes('@') && password.length>=6){
-        const token = jwt.sign({ username: username, password: password }, jwtPassword);
-        return token;
-    }else{
+ 
+    const Email = EmailSchema.safeParse(username);
+    const Pass = PassSchema.safeParse(password);
+    if(!Email.success || !Pass.success){
         return null;
+    }else{
+        const token = jwt.sign({ username: username }, jwtPassword);
+        return token;
     }
+    // if(username.includes('@') && password.length>=6){
+    //     const token = jwt.sign({ username: username, password: password }, jwtPassword);
+    //     return token;
+    // }else{
+    //     return null;
+    // }
     
 
 }
