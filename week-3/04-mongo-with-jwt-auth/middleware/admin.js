@@ -1,6 +1,7 @@
 const zod=require('zod');
 const jwt=require('jsonwebtoken');
 // Middleware for handling auth
+
   function adminMiddleware(req, res, next) {
    const authHeader = req.headers.authorization;
    if (authHeader) {

@@ -65,11 +65,6 @@ const UserSchema = new mongoose.Schema({
 );
 
 const CourseSchema = new mongoose.Schema({
-    courseId:{
-        type:Number,
-        required:true,
-        unique:true
-    },
     title:{
         type:String,
         required:true,
