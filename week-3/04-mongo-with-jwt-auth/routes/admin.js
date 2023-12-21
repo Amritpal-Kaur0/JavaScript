@@ -27,7 +27,7 @@ router.post('/signin', async(req, res) => {
     if(!findAdmin || !(await bcrypt.compare(password, findAdmin.password))){
         res.status(411).json({msg:"Admin doesnot exists in.Please signup"});
     }else{
-        const myToken=jwt.sign({username,password},process.env.SECRET_KEY);
+        const myToken=jwt.sign({username},process.env.SECRET_KEY);
         res.status(200).json({token:myToken});
 } 
     }catch(err){

@@ -16,6 +16,7 @@ const jwt=require('jsonwebtoken');
  res.status(411).json({msg:"You are not authorized to access this route"});
   }
 }
+
 function validEmailPass(req,res,next){
     const{username,password}=req.body;
     const UserSchema=zod.string().min(6).max(25);

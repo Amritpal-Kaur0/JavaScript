@@ -10,7 +10,8 @@ const bcrypt=require('bcrypt');
 router.post('/signup', validEmailPass,async (req, res) => {
     // Implement user signup logic
     const {username,password}=req.body;
-    const newUser= await User.create(({username,password}));
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser= await User.create(({username,password:hashedPassword}));
         if(!newUser){
             res.status(500).send("Error signing up User");
         }else{
@@ -21,11 +22,11 @@ router.post('/signup', validEmailPass,async (req, res) => {
 router.post('/signin',async (req, res) => {
     // Implement admin signup logic
     const{username,password}=req.body;
-    const findUser= await User.findOne({username,password});
-    if(!findUser){
+    const findUser= await User.findOne({username});
+    if(!findUser || !( bcrypt.compare(password, findUser.password))){
         res.status(411).json({msg:"user doesnot exists in.Please signup"});
     }else{
-        const myToken=jwt.sign({username,password},process.env.SECRET_KEY);
+        const myToken=jwt.sign({username},process.env.SECRET_KEY);
         res.status(200).json({token:myToken});
 }
 });
