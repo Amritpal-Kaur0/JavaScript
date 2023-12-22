@@ -27,8 +27,9 @@ router.post('/courses/:courseId', userMiddleware,async (req, res) => {
     if(!course){
         res.status(500).send("Error finding course");
     }else{
+        // console.log(req.user)
      const updatedUser=await User.findOneAndUpdate(
-        {id:req.user},
+        {username:req.user.username},
         {
         $push:{
         purchasedCourses:course

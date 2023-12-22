@@ -8,6 +8,7 @@ async function userMiddleware(req, res, next) {
     res.status(401).send("Unauthorized");
     return;
  }else{
+       req.user=VerifiedUser;
     next();
  } 
 }
