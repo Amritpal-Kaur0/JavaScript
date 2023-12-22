@@ -44,11 +44,12 @@ router.get('/courses',async (req, res) => {
 router.post('/courses/:courseId', userMiddleware,async (req, res) => {
     // Implement course purchase logic
     const course=await Course.findOne({_id:req.params.courseId});
+    console.log(req.user)
     if(!course){
         res.status(500).send("Error finding course");
     }else{
      const updatedUser=await User.findOneAndUpdate(
-        {id:req.user._id},
+        {username:req.user.username},
         {
         $push:{
         purchasedCourses:course
