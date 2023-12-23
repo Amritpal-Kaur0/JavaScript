@@ -60,7 +60,6 @@ calculate(expression) {
       throw new Error("Cannot divide a number by 0.")
   }
   return this.result;
-
 }
 
 };
