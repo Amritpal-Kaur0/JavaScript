@@ -64,14 +64,11 @@ router.post('/courses/:courseId', userMiddleware,async (req, res) => {
 
 router.get('/purchasedCourses', userMiddleware, async(req, res) => {
     // Implement fetching purchased courses logic
-    const authHeader = req.headers.authorization;
-    if (authHeader) {
-     const token = authHeader.split(" ")[1];
-     const decoded=jwt.decode(token);
-    const getUser=await User.findOne({username:decoded.username}).populate('purchasedCourses');
-    console.log(getUser)
+    try{
+    const getUser=await User.findOne({username:req.user.username}).populate('purchasedCourses');
+    //  console.log(getUser)
 res.status(200).json({purchasedCourses:getUser.purchasedCourses});
-    }else{
+    }catch{
         res.status(500).send("Error finding purchased courses");
     }
 });
