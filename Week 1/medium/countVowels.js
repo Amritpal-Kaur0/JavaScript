@@ -8,7 +8,7 @@
 function countVowels(str) {
   let count =0;
   let newstr=str.toLowerCase();
-  for(let i=0;i<str.length;i++){
+  for(let i=0;i<newstr.length;i++){
     if(newstr[i]==='a'||newstr[i]==='e'||newstr[i]==='i'||newstr[i]==='o'||newstr[i]==='u'){
       count++;
     }

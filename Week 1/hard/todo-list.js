@@ -17,11 +17,11 @@ class Todo {
  add(todo){
     this.todos.push(todo);
  }
-  remove(indexOfTodo){
+ remove(indexOfTodo){
     if(indexOfTodo>this.todos.length)return
     this.todos.splice(indexOfTodo,1);
   }
-  update(index, updatedTodo){
+ update(index, updatedTodo){
     if (index >= this.todos.length) return
     this.todos[index]=updatedTodo;
   }
